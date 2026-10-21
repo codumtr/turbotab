@@ -1,0 +1,182 @@
+[
+  {
+    "id": 1,
+    "priority": 2,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "||google-analytics.com/*",
+      "resourceTypes": ["script", "xmlhttprequest", "ping"]
+    }
+  },
+  {
+    "id": 2,
+    "priority": 2,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "||googletagmanager.com/gtag/js*",
+      "resourceTypes": ["script"]
+    }
+  },
+  {
+    "id": 3,
+    "priority": 2,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "||hotjar.com/*",
+      "resourceTypes": ["script", "websocket", "xmlhttprequest"]
+    }
+  },
+  {
+    "id": 4,
+    "priority": 2,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "||clarity.ms/*",
+      "resourceTypes": ["script", "xmlhttprequest"]
+    }
+  },
+  {
+    "id": 5,
+    "priority": 2,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "||scorecardresearch.com/*",
+      "resourceTypes": ["script", "image", "xmlhttprequest"]
+    }
+  },
+  {
+    "id": 6,
+    "priority": 2,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "||criteo.net/*",
+      "resourceTypes": ["script", "xmlhttprequest", "sub_frame"]
+    }
+  },
+  {
+    "id": 7,
+    "priority": 2,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "||connect.facebook.net/*/fbevents.js",
+      "resourceTypes": ["script"]
+    }
+  },
+  {
+    "id": 8,
+    "priority": 2,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "||mc.yandex.ru/metrika/*",
+      "resourceTypes": ["script", "xmlhttprequest"]
+    }
+  },
+  {
+    "id": 9,
+    "priority": 2,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "||widgets.outbrain.com/*",
+      "resourceTypes": ["script", "sub_frame"]
+    }
+  },
+  {
+    "id": 10,
+    "priority": 2,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "||trc.taboola.com/*",
+      "resourceTypes": ["script", "sub_frame"]
+    }
+  },
+  {
+    "id": 11,
+    "priority": 2,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "||googlesyndication.com/pagead/*",
+      "resourceTypes": ["script", "sub_frame"]
+    }
+  },
+  {
+    "id": 12,
+    "priority": 2,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "||doubleclick.net/*",
+      "resourceTypes": ["script", "sub_frame", "xmlhttprequest"]
+    }
+  },
+  {
+    "id": 13,
+    "priority": 2,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "||smartlook.com/*",
+      "resourceTypes": ["script", "xmlhttprequest"]
+    }
+  },
+  {
+    "id": 14,
+    "priority": 2,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "||fullstory.com/*",
+      "resourceTypes": ["script", "xmlhttprequest"]
+    }
+  },
+  {
+    "id": 15,
+    "priority": 2,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "||adnxs.com/*",
+      "resourceTypes": ["script", "sub_frame", "xmlhttprequest"]
+    }
+  },
+  {
+    "id": 16,
+    "priority": 2,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "||rubiconproject.com/*",
+      "resourceTypes": ["script", "sub_frame"]
+    }
+  },
+  {
+    "id": 17,
+    "priority": 2,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "||pubmatic.com/*",
+      "resourceTypes": ["script", "sub_frame"]
+    }
+  },
+  {
+    "id": 18,
+    "priority": 2,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "||analytics.tiktok.com/*",
+      "resourceTypes": ["script", "xmlhttprequest"]
+    }
+  },
+  {
+    "id": 19,
+    "priority": 2,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "||snap.licdn.com/li.lms-analytics/*",
+      "resourceTypes": ["script"]
+    }
+  },
+  {
+    "id": 20,
+    "priority": 2,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "||static.ads-twitter.com/uwt.js",
+      "resourceTypes": ["script"]
+    }
+  }
+]

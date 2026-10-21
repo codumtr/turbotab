@@ -1,0 +1,54 @@
+{
+  "manifest_version": 3,
+  "name": "TurboTab - Ultra Hızlı Tarayıcı & Sekme Hızlandırıcı",
+  "short_name": "TurboTab",
+  "version": "2.0.0",
+  "description": "0ms Prerender motoru, akıllı RAM temizleyici ve sayfa hızlandırma motoru. codum.tr tarafından geliştirilmiştir.",
+  "homepage_url": "https://codum.tr",
+  "author": "codum.tr",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_title": "TurboTab - codum.tr"
+  },
+  "permissions": [
+    "storage",
+    "tabs",
+    "alarms",
+    "declarativeNetRequest",
+    "privacy",
+    "webNavigation"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset_1",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_start",
+      "all_frames": false
+    }
+  ]
+}

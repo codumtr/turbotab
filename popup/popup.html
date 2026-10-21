@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TurboTab - codum.tr</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo-group">
+        <div class="logo-box">
+          <svg viewBox="0 0 24 24" class="logo-icon" fill="none" stroke="currentColor" stroke-width="2.2">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" fill="currentColor"/>
+          </svg>
+        </div>
+        <div>
+          <h1 class="title">TurboTab <span class="badge">v2.0</span></h1>
+          <p class="subtitle">codum.tr • 0ms Prerender & Hızlandırıcı</p>
+        </div>
+      </div>
+      <div class="status-indicator active" id="statusBadge">
+        <span class="status-dot"></span>
+        <span class="status-text">Devrede</span>
+      </div>
+    </header>
+
+    <!-- Main Turbo Boost Button -->
+    <div class="boost-card">
+      <div class="boost-content">
+        <div class="boost-info">
+          <span class="boost-title">Anında Bellek ve Sekme Temizliği</span>
+          <span class="boost-desc">Arka plandaki tüm sekmelerin RAM'ini serbest bırakın.</span>
+        </div>
+        <button id="btnBoost" class="boost-btn">
+          <svg viewBox="0 0 24 24" class="boost-btn-icon" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+          </svg>
+          <span>Turbo Boost</span>
+        </button>
+      </div>
+      <div id="boostResult" class="boost-result hidden"></div>
+    </div>
+
+    <!-- Live Performance Stats -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon-wrapper cyan">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+          </svg>
+        </div>
+        <div class="stat-data">
+          <span class="stat-value" id="statPrefetched">0</span>
+          <span class="stat-label">0ms Hızlanan Sayfa</span>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon-wrapper purple">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </div>
+        <div class="stat-data">
+          <span class="stat-value" id="statDiscarded">0</span>
+          <span class="stat-label">Uyutulan Sekme</span>
+        </div>
+      </div>
+
+      <div class="stat-card full-width">
+        <div class="stat-icon-wrapper green">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+            <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+            <line x1="6" y1="6" x2="6.01" y2="6"></line>
+            <line x1="6" y1="18" x2="6.01" y2="18"></line>
+          </svg>
+        </div>
+        <div class="stat-data">
+          <span class="stat-value" id="statRam">0 MB</span>
+          <span class="stat-label">Kurtarılan Sistem Belleği (RAM)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Optimization Controls -->
+    <div class="controls-section">
+      <h2 class="section-title">Performans & Hız Ayarları</h2>
+
+      <!-- Toggle 1: Prerender -->
+      <label class="control-row">
+        <div class="control-text">
+          <span class="control-name">⚡ 0ms Prerender Motoru</span>
+          <span class="control-desc">Tıkladığınız an sayfa bellekte hazır render edilmiş olur</span>
+        </div>
+        <div class="switch">
+          <input type="checkbox" id="togglePrefetch">
+          <span class="slider"></span>
+        </div>
+      </label>
+
+      <!-- Toggle 2: Render Boost -->
+      <label class="control-row">
+        <div class="control-text">
+          <span class="control-name">🚀 DOM & Render Hızlandırıcı</span>
+          <span class="control-desc">Görselleri lazy-load yapar, alt düzen çizimlerini atlar</span>
+        </div>
+        <div class="switch">
+          <input type="checkbox" id="toggleRenderBoost">
+          <span class="slider"></span>
+        </div>
+      </label>
+
+      <!-- Toggle 3: DNS Prefetch -->
+      <label class="control-row">
+        <div class="control-text">
+          <span class="control-name">🌐 DNS & Preconnect Sıfır Gecikme</span>
+          <span class="control-desc">Görünür bağlantılarla önceden ağ el sıkışması yapar</span>
+        </div>
+        <div class="switch">
+          <input type="checkbox" id="toggleDns">
+          <span class="slider"></span>
+        </div>
+      </label>
+
+      <!-- Toggle 4: Bloatware Blocker -->
+      <label class="control-row">
+        <div class="control-text">
+          <span class="control-name">🛡️ Ağır Takipçi & Telemetri Kalkanı</span>
+          <span class="control-desc">Sayfaları kasan 20+ analitik ve takip kodunu durdurur</span>
+        </div>
+        <div class="switch">
+          <input type="checkbox" id="toggleBloat">
+          <span class="slider"></span>
+        </div>
+      </label>
+
+      <!-- Toggle 5: Tab Suspend -->
+      <label class="control-row">
+        <div class="control-text">
+          <span class="control-name">💤 Akıllı Sekme Uyutucu (RAM Tasarrufu)</span>
+          <span class="control-desc">Kullanılmayan sekmeleri dondurup RAM'i boşaltır</span>
+        </div>
+        <div class="switch">
+          <input type="checkbox" id="toggleSuspend">
+          <span class="slider"></span>
+        </div>
+      </label>
+
+      <!-- Sub-option: Suspend timer -->
+      <div class="sub-control-row" id="suspendTimerRow">
+        <span class="sub-label">Uyku bekleme süresi:</span>
+        <select id="selectSuspendMinutes" class="select-input">
+          <option value="5">5 Dakika (Agresif / Maks Hız)</option>
+          <option value="10" selected>10 Dakika (Önerilen)</option>
+          <option value="20">20 Dakika (Dengeli)</option>
+          <option value="60">1 Saat</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Current Tab Actions -->
+    <div class="site-actions">
+      <button id="btnWhitelistCurrent" class="action-btn secondary">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        <span id="whitelistBtnText">Bu Siteyi Korumaya Al (Asla Uyutma)</span>
+      </button>
+    </div>
+
+    <!-- codum.tr Promo Box -->
+    <div class="codum-banner" id="codumPromoLink" role="button" tabindex="0" title="codum.tr web sitesini ziyaret et">
+      <div class="codum-banner-left">
+        <div class="codum-icon-badge">⚡</div>
+        <div class="codum-info">
+          <span class="codum-name">codum.tr</span>
+          <span class="codum-desc">Web, Yazılım & Teknoloji Projeleri</span>
+        </div>
+      </div>
+      <div class="codum-action">
+        <span>Ziyaret Et</span>
+        <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M7 17L17 7M17 7H7M17 7V17"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <a href="https://codum.tr" class="footer-link" id="codumFooterLink">codum.tr</a>
+      <span class="separator">•</span>
+      <span>TurboTab v2.0</span>
+      <span class="separator">•</span>
+      <span>Açık Kaynak</span>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

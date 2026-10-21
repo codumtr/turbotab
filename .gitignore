@@ -1,0 +1,13 @@
+# Chrome Extension temporary & generated folders
+_metadata/
+*.crx
+*.pem
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor directories
+.vscode/
+.idea/
