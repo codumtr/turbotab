@@ -51,7 +51,7 @@ TurboTab'ı tarayıcınıza yüklemek yalnızca **1 dakikanızı** alır. Kurulu
 
 * **Geliştirici Yöntemi (Git Clone):**
   ```bash
-  git clone https://github.com/KULLANICI_ADINIZ/browser-tab-optimizer.git
+  git clone https://github.com/codumtr/turbotab.git
   ```
 
 ---
