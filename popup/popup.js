@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       boostResult.classList.remove("hidden");
       if (freedTabs > 0) {
-        boostResult.textContent = `🚀 ${freedTabs} arka plan sekmesi uyutuldu, ~${freedRamMb} MB bellek serbest bırakıldı!`;
+        boostResult.textContent = `🚀 ${freedTabs} arka plan sekmesi uyutuldu, ~${freedRamMb} MB tahmini bellek serbest bırakıldı!`;
       } else {
         boostResult.textContent = `⚡ Sekmeler optimize edildi, aktif sekme en yüksek öncelikte.`;
       }

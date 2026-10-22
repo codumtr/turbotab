@@ -122,7 +122,8 @@ async function cleanIdleTabs() {
   if (count > 0) {
     const stats = settings.stats || { prefetchedCount: 0, discardedTabsCount: 0, savedRamMb: 0 };
     stats.discardedTabsCount += count;
-    stats.savedRamMb += count * 90; // ~90MB per Chromium process
+    // Chromium renderer işlem başına ortalama ~90MB bellek tasarrufu tahmini
+    stats.savedRamMb += count * 90;
     await chrome.storage.local.set({ stats });
   }
 }
@@ -176,6 +177,7 @@ async function executeImmediateBoost() {
 
   const stats = settings.stats || { prefetchedCount: 0, discardedTabsCount: 0, savedRamMb: 0 };
   stats.discardedTabsCount += count;
+  // Turbo Boost anlık temizliğinde sekme başına ortalama ~95MB tasarruf tahmini
   stats.savedRamMb += count * 95;
   await chrome.storage.local.set({ stats });
 
